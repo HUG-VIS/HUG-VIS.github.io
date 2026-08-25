@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hug-vis.github.io/sitemap.xml
