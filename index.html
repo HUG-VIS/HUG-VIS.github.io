@@ -68,7 +68,7 @@
         <a href="#overview">Overview</a>
         <a href="#dataset">Dataset</a>
         <a href="#benchmarks">Benchmarks</a>
-        <a href="#findings">Findings</a>
+        <a href="#results">Results</a>
         <a href="#access">Access</a>
         <a href="#citation">Citation</a>
       </nav>
@@ -230,99 +230,247 @@
       <section class="section benchmarks" id="benchmarks">
         <div class="section-heading reveal">
           <p class="section-index">03 / Benchmark tracks</p>
-          <h2>From understanding expression to generating the <em>whole performance.</em></h2>
+          <h2>Four foundational tasks on one <em>controlled benchmark.</em></h2>
         </div>
+
+        <p class="benchmark-intro reveal">
+          HUG-VIS evaluates perception, generation, speech, and foreground understanding on the same actor-by-assignment
+          grid. Every task follows a zero-shot protocol, while its inputs, outputs, and evaluation criteria remain
+          native to the capability being measured.
+        </p>
 
         <div class="track-grid">
           <article class="track-card reveal">
-            <div class="track-top"><span>01</span><p>Understand</p></div>
+            <div class="track-top"><span>01</span><p>Perception</p></div>
             <h3>Multimodal emotion recognition</h3>
-            <p>Seven-class instructed-condition recognition from image, video, audio, text, and their combinations.</p>
-            <ul><li>7 input settings</li><li>Zero-shot evaluation</li><li>Accuracy</li></ul>
+            <p>Recognize seven instructed emotion conditions from isolated modalities and multimodal combinations.</p>
+            <dl class="task-specs">
+              <div><dt>Inputs</dt><dd>Image · video · audio · text</dd></div>
+              <div><dt>Output</dt><dd>Seven-class emotion label</dd></div>
+              <div><dt>Evaluation</dt><dd>Top-1 accuracy</dd></div>
+            </dl>
           </article>
           <article class="track-card reveal">
-            <div class="track-top"><span>02</span><p>Generate</p></div>
+            <div class="track-top"><span>02</span><p>Generation</p></div>
             <h3>Human video generation</h3>
-            <p>Audio-driven portraits and vision-driven head or half-body synthesis under shared sources.</p>
-            <ul><li>18 systems</li><li>Objective metrics</li><li>Human MOS</li></ul>
+            <p>Generate portrait, head, or half-body performances under audio-driven and vision-driven settings.</p>
+            <dl class="task-specs">
+              <div><dt>Inputs</dt><dd>Reference image · audio or motion</dd></div>
+              <div><dt>Output</dt><dd>Synchronized human video</dd></div>
+              <div><dt>Evaluation</dt><dd>Fidelity · identity · sync · MOS</dd></div>
+            </dl>
           </article>
           <article class="track-card reveal">
-            <div class="track-top"><span>03</span><p>Speak</p></div>
+            <div class="track-top"><span>03</span><p>Speech</p></div>
             <h3>Voice cloning</h3>
-            <p>Speaker-conditioned expressive speech evaluated for signal quality, identity, intelligibility, and affect.</p>
-            <ul><li>6 systems</li><li>4 automatic metrics</li><li>2 MOS criteria</li></ul>
+            <p>Synthesize expressive Mandarin speech while preserving source-speaker identity and affective delivery.</p>
+            <dl class="task-specs">
+              <div><dt>Inputs</dt><dd>Reference voice · target text</dd></div>
+              <div><dt>Output</dt><dd>Cloned speech waveform</dd></div>
+              <div><dt>Evaluation</dt><dd>Quality · speaker similarity · MOS</dd></div>
+            </dl>
           </article>
           <article class="track-card reveal">
-            <div class="track-top"><span>04</span><p>Decompose</p></div>
+            <div class="track-top"><span>04</span><p>Foreground</p></div>
             <h3>Human video matting</h3>
-            <p>Temporally coherent foreground extraction against manually refined sequence-level alpha references.</p>
-            <ul><li>9 systems</li><li>5 metrics</li><li>Frame &amp; temporal errors</li></ul>
+            <p>Recover temporally coherent alpha mattes from controlled RGB sequences with fine boundary motion.</p>
+            <dl class="task-specs">
+              <div><dt>Input</dt><dd>Green-screen RGB video</dd></div>
+              <div><dt>Output</dt><dd>Per-frame alpha sequence</dd></div>
+              <div><dt>Evaluation</dt><dd>Spatial and temporal errors</dd></div>
+            </dl>
           </article>
         </div>
 
-        <section class="gallery reveal" aria-labelledby="gallery-title">
-          <div class="gallery-header">
+        <section class="qualitative reveal" aria-labelledby="qualitative-title">
+          <div class="qualitative-header">
             <div>
               <p class="mini-label">Qualitative evaluation</p>
-              <h3 id="gallery-title">Inspect what aggregate scores can hide.</h3>
+              <h3 id="qualitative-title">Inspect what aggregate scores can hide.</h3>
             </div>
-            <div class="gallery-tabs" role="tablist" aria-label="Result figure">
-              <button id="gallery-tab-portrait" type="button" role="tab" aria-selected="true" aria-controls="gallery-panel" data-gallery-tab="portrait">Portrait</button>
-              <button id="gallery-tab-body" type="button" role="tab" aria-selected="false" aria-controls="gallery-panel" tabindex="-1" data-gallery-tab="body">Full frame</button>
-              <button id="gallery-tab-matting" type="button" role="tab" aria-selected="false" aria-controls="gallery-panel" tabindex="-1" data-gallery-tab="matting">Matting</button>
-            </div>
+            <p>
+              Temporally aligned sequences and enlarged local regions reveal identity drift, incomplete motion,
+              structural hand failures, and unstable alpha boundaries that average metrics can dilute.
+            </p>
           </div>
-          <div id="gallery-panel" class="gallery-stage" role="tabpanel" aria-labelledby="gallery-tab-portrait">
-            <button class="image-button" type="button" data-gallery-image data-lightbox="images/site/fig04_head_expression1.webp" aria-label="Open qualitative results figure">
-              <img
-                src="images/site/fig04_head_expression1.webp"
-                alt="Qualitative comparison of audio-driven and video-driven portrait synthesis systems"
-                width="1359"
-                height="1477"
-                loading="lazy"
-              >
-            </button>
-            <p data-gallery-caption>Portrait synthesis exposes different trade-offs in identity, expression, and lip synchronization.</p>
+
+          <div class="qualitative-grid">
+            <figure class="qualitative-card qualitative-audio">
+              <button class="image-button" type="button" data-lightbox="images/site/fig04_head_expression1.webp" aria-label="Open latest audio-driven generation comparison">
+                <img
+                  src="images/site/fig04_head_expression1.webp"
+                  alt="Latest qualitative comparison of eight audio-driven portrait generation systems on one Happy utterance"
+                  width="993"
+                  height="1205"
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>
+                <span>01 · Audio-driven generation</span>
+                <h4>Expression and identity across a Happy utterance.</h4>
+                <p>Six ordered time points align the source portrait, transcript, audio waveform, and model outputs. The sequence exposes facial deformation, background artifacts, identity stability, and expression dynamics.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="qualitative-card qualitative-body">
+              <button class="image-button" type="button" data-lightbox="images/site/fig05_temporal_upperbody.webp" aria-label="Open latest vision-driven temporal comparison">
+                <img
+                  src="images/site/fig05_temporal_upperbody.webp"
+                  alt="Latest temporal comparison of open-source and closed-source vision-driven human video generation systems on one Angry clip"
+                  width="1772"
+                  height="1559"
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>
+                <span>02 · Vision-driven generation</span>
+                <h4>Motion completion across an Angry performance.</h4>
+                <p>The source frame and driving motion sequence are followed by aligned outputs from open- and closed-source systems. Differences appear in arm-trajectory timing, gesture completion, appearance, and background stability.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="qualitative-card qualitative-hand">
+              <button class="image-button" type="button" data-lightbox="images/site/fig06_hand_artifacts.webp" aria-label="Open hand artifact comparison">
+                <img
+                  src="images/site/fig06_hand_artifacts.webp"
+                  alt="Fine-grained hand-region failures across six vision-driven generation systems"
+                  width="2552"
+                  height="1418"
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>
+                <span>03 · Fine-grained structure</span>
+                <h4>Small hand regions reveal large structural failures.</h4>
+                <p>Enlarged insets localize fused, extra, blurred, distorted, and missing fingers or hands across six systems. These local defects occupy few pixels and can disappear inside frame-averaged scores.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="qualitative-card qualitative-matting">
+              <button class="image-button" type="button" data-lightbox="images/site/fig09_green_screen_segmentation.webp" aria-label="Open latest human video matting comparison">
+                <img
+                  src="images/site/fig09_green_screen_segmentation.webp"
+                  alt="Latest qualitative comparison of nine human video matting systems at seven time points"
+                  width="1489"
+                  height="1418"
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>
+                <span>04 · Human video matting</span>
+                <h4>Boundary errors tracked through time.</h4>
+                <p>Seven frames compare RGB input, reference alpha, and nine model predictions. Red overlays highlight boundary discrepancies, foreground leakage, and temporal inconsistency relative to the reference.</p>
+              </figcaption>
+            </figure>
           </div>
         </section>
       </section>
 
-      <section class="section findings" id="findings">
+      <section class="section results" id="results">
         <div class="section-heading inverse reveal">
-          <p class="section-index">04 / Findings</p>
-          <h2>The benchmark reveals <em>where rankings separate.</em></h2>
+          <p class="section-index">04 / Experimental results</p>
+          <h2>Results organized by <em>task and criterion.</em></h2>
         </div>
 
-        <div class="finding-grid">
-          <article class="finding-card finding-green reveal">
-            <p class="finding-number">82.93<span>%</span></p>
-            <h3>Language dominates current emotion recognition.</h3>
-            <p>
-              The strongest text-only system reaches 82.93%, while the best frame and video systems reach 37.05%
-              and 48.52%. Adding audio after video + text yields only marginal gains in tested multimodal systems.
-            </p>
+        <div class="results-protocol reveal">
+          <p>No HUG-VIS sample is used for training, fine-tuning, calibration, or model selection.</p>
+          <ul><li>Common zero-shot protocol</li><li>Task-specific metrics</li><li>Objective results + human MOS</li></ul>
+        </div>
+
+        <div class="results-grid">
+          <article class="result-card reveal">
+            <header><span>MER</span><div><p>Task 01</p><h3>Emotion recognition</h3></div></header>
+            <div class="table-shell">
+              <table class="result-table">
+                <caption class="sr-only">Best emotion recognition model and accuracy for each input setting</caption>
+                <thead><tr><th scope="col">Input</th><th scope="col">Best model</th><th scope="col">Accuracy ↑</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Image frame</th><td>MMA-DFER</td><td>37.05%</td></tr>
+                  <tr><th scope="row">Video</th><td>MiniCPM-o 4.5</td><td>48.52%</td></tr>
+                  <tr><th scope="row">Audio</th><td>Audio-Reasoner-7B</td><td>74.38%</td></tr>
+                  <tr><th scope="row">Text</th><td>DeepSeek-V3.2</td><td>82.93%</td></tr>
+                  <tr><th scope="row">Video + Audio</th><td>Qwen2.5-Omni-7B</td><td>73.70%</td></tr>
+                  <tr><th scope="row">Video + Text</th><td>Qwen2.5-Omni-7B</td><td>83.74%</td></tr>
+                  <tr class="best-row"><th scope="row">Video + Audio + Text</th><td>Qwen2.5-Omni-7B</td><td><strong>83.79%</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="result-note">Text is substantially stronger than visual-only inputs; adding audio to video + text improves the tested trimodal system by only 0.05 points.</p>
           </article>
-          <article class="finding-card reveal">
-            <p class="finding-number">2.30<span>MAD</span></p>
-            <h3>BiRefNet leads all five matting criteria.</h3>
-            <p>
-              Yet thin fingers, motion boundaries, and transient leakage remain visible—even for the strongest
-              systems—making boundary fidelity under motion the central residual challenge.
-            </p>
+
+          <article class="result-card reveal">
+            <header><span>ADG</span><div><p>Task 02 · Audio-driven</p><h3>Human video generation</h3></div></header>
+            <div class="table-shell">
+              <table class="result-table">
+                <caption class="sr-only">Audio-driven human video generation metric leaders</caption>
+                <thead><tr><th scope="col">Evaluation</th><th scope="col">Criterion</th><th scope="col">Best model</th><th scope="col">Score</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Objective</th><td>CSIM ↑</td><td>Ditto</td><td><strong>0.904</strong></td></tr>
+                  <tr><th scope="row">Objective</th><td>Sync-C ↑</td><td>LatentSync</td><td><strong>5.43</strong></td></tr>
+                  <tr><th scope="row">Objective</th><td>Sync-D ↓</td><td>Sonic / LatentSync</td><td><strong>7.73</strong></td></tr>
+                  <tr><th scope="row">MOS</th><td>ID similarity ↑</td><td>Sonic</td><td><strong>4.44</strong></td></tr>
+                  <tr><th scope="row">MOS</th><td>Emotion ↑</td><td>Sonic</td><td><strong>4.16</strong></td></tr>
+                  <tr><th scope="row">MOS</th><td>Lip sync ↑</td><td>LatentSync</td><td><strong>4.47</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="result-note">Identity and synchronization produce different leaders: Ditto leads CSIM, while Sonic and LatentSync lead perceptual and lip-sync criteria.</p>
           </article>
-          <article class="finding-card reveal">
-            <p class="finding-number">0.996<span>ρ</span></p>
-            <h3>Source difficulty can repeat—but only under matched criteria.</h3>
-            <p>
-              Audio- and video-driven head generation show nearly identical clip-level difficulty under common
-              objective-fidelity measures, while human judgments reorder the same sources.
-            </p>
+
+          <article class="result-card result-card-wide reveal">
+            <header><span>VDG</span><div><p>Task 02 · Vision-driven</p><h3>Human video generation by output scope</h3></div></header>
+            <div class="table-shell">
+              <table class="result-table result-table-dense">
+                <caption class="sr-only">Vision-driven human video generation leaders within each output scope</caption>
+                <thead><tr><th scope="col">Group</th><th scope="col">Objective metric leaders</th><th scope="col">MOS leaders</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Open · Head</th><td><strong>X-NeMo</strong>: LPIPS 0.520, PSNR 10.15, FID 150.57<br><strong>AniPortrait</strong>: CSIM 0.884, SSIM 0.383</td><td><strong>PersonaLive!</strong>: ID 4.41<br><strong>X-NeMo</strong>: Emotion 3.68, Motion 3.82</td></tr>
+                  <tr><th scope="row">Open · Body</th><td><strong>Animate-X</strong>: LPIPS 0.139, PSNR 18.81, SSIM 0.755<br><strong>Wan2.2</strong>: CSIM 0.783, FID 20.24</td><td><strong>Wan2.2</strong>: ID 4.82, Emotion 4.61, Motion 4.72</td></tr>
+                  <tr><th scope="row">Closed-source</th><td><strong>Vidu</strong>: LPIPS 0.195, CSIM 0.786, FID 20.05<br><strong>Kling</strong>: PSNR 16.41, SSIM 0.721</td><td><strong>Kling</strong>: ID 4.76, Motion 4.64<br><strong>Vidu</strong>: Emotion 4.60</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="result-note">Systems are compared only within their reported output scopes. No single model leads reconstruction, identity, motion, and human judgment simultaneously.</p>
           </article>
+
+          <article class="result-card result-card-wide reveal">
+            <header><span>VC</span><div><p>Task 03</p><h3>Voice cloning</h3></div></header>
+            <div class="table-shell">
+              <table class="result-table">
+                <caption class="sr-only">Voice cloning leaders for open-source and closed-source systems</caption>
+                <thead><tr><th scope="col">Group</th><th scope="col">UTMOS ↑</th><th scope="col">DNSMOS ↑</th><th scope="col">Speaker sim. ↑</th><th scope="col">MOS ID ↑</th><th scope="col">MOS emotion ↑</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Open-source</th><td>OpenAudio S1<br><strong>2.32</strong></td><td>OpenAudio S1<br><strong>3.01</strong></td><td>CosyVoice 3<br><strong>0.856</strong></td><td>IndexTTS2<br><strong>4.24</strong></td><td>IndexTTS2<br><strong>4.40</strong></td></tr>
+                  <tr><th scope="row">Closed-source</th><td>Inworld TTS-1.5<br><strong>2.69</strong></td><td>Inworld TTS-1.5<br><strong>3.22</strong></td><td>Eleven Multilingual v2<br><strong>0.779</strong></td><td>Eleven Multilingual v2<br><strong>3.73</strong></td><td>Eleven Multilingual v2<br><strong>4.23</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="result-note">Real audio provides a 0.990 speaker-similarity reference. Reference-free quality scores should not be treated as upper-bound fidelity measurements.</p>
+          </article>
+
+          <article class="result-card result-card-wide reveal">
+            <header><span>VM</span><div><p>Task 04</p><h3>Human video matting</h3></div></header>
+            <div class="table-shell">
+              <table class="result-table">
+                <caption class="sr-only">Top two human video matting systems across five error metrics</caption>
+                <thead><tr><th scope="col">Model</th><th scope="col">MAD ↓</th><th scope="col">MSE ↓</th><th scope="col">dtSSD ↓</th><th scope="col">Grad ↓</th><th scope="col">Conn ↓</th></tr></thead>
+                <tbody>
+                  <tr class="best-row"><th scope="row">BiRefNet</th><td><strong>2.30</strong></td><td><strong>0.82</strong></td><td><strong>2.04</strong></td><td><strong>10.43</strong></td><td><strong>4.31</strong></td></tr>
+                  <tr><th scope="row">MatAnyone 2</th><td>3.86</td><td>0.91</td><td>2.12</td><td>11.45</td><td>4.53</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="result-note">BiRefNet leads all five criteria. Residual errors concentrate around fine hand boundaries, rapid motion contours, and foreground leakage.</p>
+          </article>
+        </div>
+
+        <div class="analysis-heading reveal">
+          <p class="mini-label">Cross-task analysis</p>
+          <h3>Difficulty depends on the source, capability, and evaluation criterion.</h3>
         </div>
 
         <div class="cross-task reveal">
           <div class="cross-task-copy">
-            <p class="mini-label">Cross-task diagnosis</p>
             <h3>There is no universally difficult emotion.</h3>
             <p>
               Afraid is hardest for recognition, Sad for several head-generation criteria, Angry for voice-quality
@@ -353,43 +501,18 @@
         <div class="diagnostic-grid reveal">
           <figure>
             <img src="images/site/fig11_head_diagnostics.webp" alt="Agreement between video-driven and audio-driven source difficulty" width="950" height="824" loading="lazy">
-            <figcaption><strong>Matched generation criteria.</strong> Audio- and video-driven difficulty aligns closely on shared clips.</figcaption>
+            <figcaption><strong>Matched generation criteria.</strong> Audio- and video-driven source difficulty aligns closely on shared clips (ρ = 0.99).</figcaption>
           </figure>
           <figure>
             <img src="images/site/fig12_matting_factors.webp" alt="Relationship between ground-truth motion and temporal matting error" width="955" height="786" loading="lazy">
-            <figcaption><strong>Motion and temporal error.</strong> Larger foreground changes are associated with higher dtSSD.</figcaption>
+            <figcaption><strong>Motion and temporal error.</strong> Larger foreground changes are associated with higher dtSSD (ρ = 0.63).</figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section class="section demos" id="demos">
-        <div class="section-heading reveal">
-          <p class="section-index">05 / Interactive samples</p>
-          <h2>Designed now for the <em>media we will add next.</em></h2>
-        </div>
-        <p class="demos-intro reveal">
-          The first release uses paper figures. This gallery is reserved for real generated videos, cloned speech,
-          and frame-by-frame alpha comparisons as soon as the sample package is approved.
-        </p>
-        <div class="demo-grid">
-          <article class="demo-placeholder reveal">
-            <div class="demo-window"><span class="play">▶</span><span class="scanline"></span></div>
-            <div><span>Video</span><h3>Generation comparison</h3><p>Source-aligned playback across audio- and vision-driven systems.</p></div>
-          </article>
-          <article class="demo-placeholder reveal">
-            <div class="demo-window audio-window"><span class="wave">▂▅▇▃▆▂▇▅▃▆▂</span><span class="scanline"></span></div>
-            <div><span>Audio</span><h3>Voice cloning</h3><p>Reference and generated speech with model and condition controls.</p></div>
-          </article>
-          <article class="demo-placeholder reveal">
-            <div class="demo-window matte-window"><span>RGB</span><i></i><span>α</span><span class="scanline"></span></div>
-            <div><span>Matting</span><h3>Boundary inspection</h3><p>Synchronized RGB, alpha, and composite views at full resolution.</p></div>
-          </article>
         </div>
       </section>
 
       <section class="section access" id="access">
         <div class="section-heading reveal">
-          <p class="section-index">06 / Dataset access, license &amp; ethics</p>
+          <p class="section-index">05 / Access &amp; responsibility</p>
           <h2>Controlled access for <em>responsible academic research.</em></h2>
         </div>
 
@@ -454,7 +577,7 @@ hf download GML-MMGroup/HUG-VIS \
               <dl class="contact-list">
                 <div>
                   <dt>Dataset access &amp; project</dt>
-                  <dd><a href="mailto:zebang.cheng@gmail.com?cc=mafei%40gml.ac.cn">Zebang Cheng</a><br><span>zebang.cheng@gmail.com</span><br>Cc: <a href="mailto:mafei@gml.ac.cn">Fei Ma</a></dd>
+                  <dd><a href="mailto:zebang.cheng@gmail.com?cc=mafei%40gml.ac.cn">Zebang Cheng</a><br><span>zebang.cheng@gmail.com</span><br><br>Cc: <a href="mailto:mafei@gml.ac.cn">Fei Ma</a><br><span>mafei@gml.ac.cn</span></dd>
                 </div>
                 <div>
                   <dt>Paper correspondence</dt>
@@ -495,7 +618,7 @@ hf download GML-MMGroup/HUG-VIS \
 
       <section class="section citation" id="citation">
         <div class="citation-copy reveal">
-          <p class="section-index">07 / Citation</p>
+          <p class="section-index">06 / Citation</p>
           <h2>Build on the shared coordinate system.</h2>
           <p>Formal publication metadata and the final BibTeX entry will be added with the paper release.</p>
           <div class="citation-actions">

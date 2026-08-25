@@ -43,61 +43,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-28% 0px -62% 0px', threshold: [0, 0.15, 0.4] });
 sections.forEach((section) => sectionObserver.observe(section));
 
-const galleryItems = {
-  portrait: {
-    src: 'images/site/fig04_head_expression1.webp',
-    alt: 'Qualitative comparison of audio-driven and video-driven portrait synthesis systems',
-    caption: 'Portrait synthesis exposes different trade-offs in identity, expression, and lip synchronization.'
-  },
-  body: {
-    src: 'images/site/fig05_temporal_upperbody.webp',
-    alt: 'Temporal comparison of full-frame video-driven human synthesis systems',
-    caption: 'Full-frame sequences reveal motion-following, action-completion, appearance, and background failures over time.'
-  },
-  matting: {
-    src: 'images/site/fig09_green_screen_segmentation.webp',
-    alt: 'Temporal alpha matte predictions from nine foreground extraction systems',
-    caption: 'Seven sampled frames localize leakage, thin-structure errors, and unstable boundaries that averages can obscure.'
-  }
-};
-
-const galleryImageButton = document.querySelector('[data-gallery-image]');
-const galleryImage = galleryImageButton?.querySelector('img');
-const galleryCaption = document.querySelector('[data-gallery-caption]');
-const galleryPanel = document.querySelector('[role="tabpanel"]');
-const galleryTabs = [...document.querySelectorAll('[data-gallery-tab]')];
-
-const selectGalleryTab = (tab, moveFocus = false) => {
-  const item = galleryItems[tab.dataset.galleryTab];
-  if (!item || !galleryImage || !galleryImageButton || !galleryCaption) return;
-  galleryTabs.forEach((button) => {
-    const selected = button === tab;
-    button.setAttribute('aria-selected', String(selected));
-    button.tabIndex = selected ? 0 : -1;
-  });
-  galleryPanel?.setAttribute('aria-labelledby', tab.id);
-  galleryImage.animate([{ opacity: 0.15 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
-  galleryImage.src = item.src;
-  galleryImage.alt = item.alt;
-  galleryImageButton.dataset.lightbox = item.src;
-  galleryCaption.textContent = item.caption;
-  if (moveFocus) tab.focus();
-};
-
-galleryTabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => selectGalleryTab(tab));
-  tab.addEventListener('keydown', (event) => {
-    let targetIndex;
-    if (event.key === 'ArrowRight') targetIndex = (index + 1) % galleryTabs.length;
-    if (event.key === 'ArrowLeft') targetIndex = (index - 1 + galleryTabs.length) % galleryTabs.length;
-    if (event.key === 'Home') targetIndex = 0;
-    if (event.key === 'End') targetIndex = galleryTabs.length - 1;
-    if (targetIndex === undefined) return;
-    event.preventDefault();
-    selectGalleryTab(galleryTabs[targetIndex], true);
-  });
-});
-
 const lightbox = document.querySelector('[data-lightbox-dialog]');
 const lightboxImage = document.querySelector('[data-lightbox-image]');
 
