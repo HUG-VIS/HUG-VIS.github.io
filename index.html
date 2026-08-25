@@ -31,7 +31,6 @@
         "@context": "https://schema.org",
         "@type": "ScholarlyArticle",
         "name": "HUG-VIS: A Multimodal Benchmark for Human-centered Understanding and Generation in Visual Intelligence",
-        "datePublished": "2026",
         "url": "https://hug-vis.github.io/",
         "codeRepository": "https://github.com/GML-MMGroup/HUG-VIS",
         "author": [
@@ -39,11 +38,13 @@
           { "@type": "Person", "name": "Zebang Cheng" },
           { "@type": "Person", "name": "Minghui Li" },
           { "@type": "Person", "name": "Hongbo Xu" },
+          { "@type": "Person", "name": "Yuyong Tan" },
           { "@type": "Person", "name": "Yihua Shao" },
           { "@type": "Person", "name": "Hanling Wang" },
-          { "@type": "Person", "name": "Yuqing Gao" },
           { "@type": "Person", "name": "Zhou Liu" },
+          { "@type": "Person", "name": "Yuqing Gao" },
           { "@type": "Person", "name": "Dong Wang" },
+          { "@type": "Person", "name": "Long Ma" },
           { "@type": "Person", "name": "Laizhong Cui" },
           { "@type": "Person", "name": "Nicu Sebe" },
           { "@type": "Person", "name": "Qi Tian" }
@@ -68,6 +69,7 @@
         <a href="#dataset">Dataset</a>
         <a href="#benchmarks">Benchmarks</a>
         <a href="#findings">Findings</a>
+        <a href="#access">Access</a>
         <a href="#citation">Citation</a>
       </nav>
       <a class="header-cta" href="https://github.com/GML-MMGroup/HUG-VIS" target="_blank" rel="noreferrer">
@@ -90,12 +92,12 @@
             performance.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#overview">Explore the benchmark <span>↓</span></a>
+            <a class="button button-primary" href="#access">View access instructions <span>↓</span></a>
             <a class="button button-secondary" href="https://github.com/GML-MMGroup/HUG-VIS" target="_blank" rel="noreferrer">
               View repository <span>↗</span>
             </a>
           </div>
-          <p class="release-note"><span>Release status</span> The academic-use license is available; paper, dataset access, and evaluation code are being prepared.</p>
+          <p class="release-note"><span>Controlled release</span> The dataset page and access instructions are available. A finalized license form and gated dataset files will be released before applications open.</p>
         </div>
 
         <ul class="hero-stats reveal">
@@ -124,8 +126,8 @@
         <p class="paper-kicker">HUG-VIS</p>
         <h2>A Multimodal Benchmark for Human-centered Understanding and Generation in Visual Intelligence</h2>
         <p class="authors">
-          Fei Ma · Zebang Cheng · Minghui Li · Hongbo Xu · Yihua Shao · Hanling Wang · Yuqing Gao · Zhou Liu ·
-          Dong Wang · Laizhong Cui · Nicu Sebe · Qi Tian
+          Fei Ma · Zebang Cheng · Minghui Li · Hongbo Xu · Yuyong Tan · Yihua Shao · Hanling Wang · Zhou Liu ·
+          Yuqing Gao · Dong Wang · Long Ma · Laizhong Cui · Nicu Sebe · Qi Tian
         </p>
       </section>
 
@@ -220,8 +222,7 @@
             <li><span>WAV</span> audio</li>
             <li><span>TXT</span> prompts &amp; transcripts</li>
             <li><span>α</span> soft alpha matte</li>
-            <li><span>RGBA</span> foreground</li>
-            <li><span>JSON</span> metadata</li>
+            <li><span>ID</span> condition identifiers</li>
           </ul>
         </div>
       </section>
@@ -266,12 +267,12 @@
               <h3 id="gallery-title">Inspect what aggregate scores can hide.</h3>
             </div>
             <div class="gallery-tabs" role="tablist" aria-label="Result figure">
-              <button type="button" role="tab" aria-selected="true" data-gallery-tab="portrait">Portrait</button>
-              <button type="button" role="tab" aria-selected="false" data-gallery-tab="body">Full frame</button>
-              <button type="button" role="tab" aria-selected="false" data-gallery-tab="matting">Matting</button>
+              <button id="gallery-tab-portrait" type="button" role="tab" aria-selected="true" aria-controls="gallery-panel" data-gallery-tab="portrait">Portrait</button>
+              <button id="gallery-tab-body" type="button" role="tab" aria-selected="false" aria-controls="gallery-panel" tabindex="-1" data-gallery-tab="body">Full frame</button>
+              <button id="gallery-tab-matting" type="button" role="tab" aria-selected="false" aria-controls="gallery-panel" tabindex="-1" data-gallery-tab="matting">Matting</button>
             </div>
           </div>
-          <div class="gallery-stage">
+          <div id="gallery-panel" class="gallery-stage" role="tabpanel" aria-labelledby="gallery-tab-portrait">
             <button class="image-button" type="button" data-gallery-image data-lightbox="images/site/fig04_head_expression1.webp" aria-label="Open qualitative results figure">
               <img
                 src="images/site/fig04_head_expression1.webp"
@@ -387,31 +388,109 @@
       </section>
 
       <section class="section access" id="access">
-        <div class="access-grid reveal">
-          <div>
-            <p class="section-index">06 / Access &amp; responsibility</p>
-            <h2>Research access, with the represented people kept in view.</h2>
-          </div>
-          <div>
-            <p>
-              HUG-VIS contains identifiable appearance, voice, facial expression, body motion, and recomposable
-              foreground assets. Access is limited to approved, non-commercial academic research under the
-              HUG-VIS Dataset Academic Use License. Applicants must complete and sign the form and submit it from
-              an official institutional email address. For access questions, email
-              <a href="mailto:zebang.cheng@gmail.com?cc=mafei%40gml.ac.cn">Zebang Cheng</a>, with Fei Ma copied.
-            </p>
-            <p>
-              The benchmark is designed for controlled diagnosis. It does not estimate in-the-wild deployment
-              performance: recordings use one Mandarin-language studio, a frontal seated view, and acted affective
-              conditions from a demographically narrow cohort.
-            </p>
-            <div class="citation-actions">
-              <a class="button button-primary" href="HUG-VIS_Dataset_Academic_Use_License.docx" download>
-                Download academic-use license <span>↓</span>
+        <div class="section-heading reveal">
+          <p class="section-index">06 / Dataset access, license &amp; ethics</p>
+          <h2>Controlled access for <em>responsible academic research.</em></h2>
+        </div>
+
+        <div class="access-status reveal">
+          <span>Controlled release</span>
+          <p>
+            HUG-VIS contains identifiable recordings of human participants. Access is limited to approved,
+            non-commercial academic research under the recipient data-use agreement. Once applications open,
+            requests will be reviewed manually, and completing the steps below will not guarantee approval.
+          </p>
+        </div>
+
+        <div class="access-layout">
+          <article class="access-panel reveal">
+            <p class="mini-label">Request access</p>
+            <h3>Keep applicant details consistent across every step.</h3>
+            <ol class="access-steps">
+              <li>
+                <div><strong>Read the finalized license.</strong> Confirm that your institution and proposed work satisfy the non-commercial academic-use terms.</div>
+              </li>
+              <li>
+                <div><strong>Submit the Hugging Face request.</strong> When gated access opens, sign in with an individual account, complete every field, and provide the exact username that should receive access.</div>
+              </li>
+              <li>
+                <div><strong>Complete and sign the finalized agreement.</strong> The responsible applicant/signatory and Hugging Face requester must be the same eligible individual, with matching name, institution, position, and official institutional email. They must be faculty, a researcher, or research staff at a university or public/non-profit research institution; students cannot sign as the responsible applicant.</div>
+              </li>
+              <li>
+                <div><strong>Email the signed agreement.</strong> Send it from the same official institutional address to Zebang Cheng, copy Fei Ma, and use <code>[HUG-VIS Access] Full Name | Institution | HF username</code> as the subject.</div>
+              </li>
+              <li>
+                <div><strong>Wait for manual review.</strong> If approved, access is granted only to the individual Hugging Face username named in the application.</div>
+              </li>
+            </ol>
+            <div class="access-actions">
+              <a class="button button-primary" href="https://huggingface.co/datasets/GML-MMGroup/HUG-VIS" target="_blank" rel="noreferrer">
+                Open dataset page <span>↗</span>
+              </a>
+              <a class="button button-secondary" href="HUG-VIS_Dataset_Academic_Use_License.docx" download>
+                Download current draft form <span>↓</span>
+              </a>
+              <a class="button button-secondary" href="mailto:zebang.cheng@gmail.com?cc=mafei%40gml.ac.cn&amp;subject=%5BHUG-VIS%20Access%20Question%5D">
+                Contact access team <span>↗</span>
               </a>
             </div>
+            <p class="form-note">The form in the current main GitHub repository still contains provider and citation placeholders and is not final. Check for a finalized revision before signing or submitting it.</p>
+          </article>
+
+          <div class="access-sidebar">
+            <article class="download-card reveal">
+              <p class="mini-label">Download after approval</p>
+              <h3>Authenticate with the approved account.</h3>
+              <pre><code>hf auth login
+hf download GML-MMGroup/HUG-VIS \
+  --repo-type dataset \
+  --local-dir HUG-VIS</code></pre>
+              <p>Use the same individual account named in the application. Never share passwords, tokens, or access credentials.</p>
+            </article>
+
+            <article class="contact-card reveal">
+              <p class="mini-label">Contact</p>
+              <h3>Direct each question to the right contact.</h3>
+              <dl class="contact-list">
+                <div>
+                  <dt>Dataset access &amp; project</dt>
+                  <dd><a href="mailto:zebang.cheng@gmail.com?cc=mafei%40gml.ac.cn">Zebang Cheng</a><br><span>zebang.cheng@gmail.com</span><br>Cc: <a href="mailto:mafei@gml.ac.cn">Fei Ma</a></dd>
+                </div>
+                <div>
+                  <dt>Paper correspondence</dt>
+                  <dd><a href="mailto:longma@cuhk.edu.hk">Long Ma</a> · <a href="mailto:tian.qi1@huawei.com">Qi Tian</a></dd>
+                </div>
+              </dl>
+            </article>
           </div>
         </div>
+
+        <article class="responsible-use reveal">
+          <div>
+            <p class="mini-label">Responsible use</p>
+            <h3>The people represented in HUG-VIS remain identifiable.</h3>
+            <p>
+              All actors provided written informed consent before recording for research capture and authorized use
+              of their identifiable likeness, voice, and performed behavior. Public examples released by the project
+              are limited to research uses covered by those authorizations; dataset access does not grant recipients
+              permission to republish identifiable material.
+            </p>
+          </div>
+          <div>
+            <p class="mini-label">License essentials</p>
+            <ul class="license-points">
+              <li>Use the dataset and derived materials only for scientific, educational, non-commercial academic purposes.</li>
+              <li>Do not redistribute data, annotations, restricted derivatives, or access credentials.</li>
+              <li>Keep research-group use under the responsible applicant's direct supervision, inside the approved research environment, and under the same terms.</li>
+              <li>Do not edit, composite, dub, replace, or republish original video or audio as modified source data; research processing stays inside the approved environment.</li>
+              <li>Do not identify, contact, track, impersonate, surveil, or harm recorded participants.</li>
+              <li>Do not use HUG-VIS for deceptive deepfakes, defamation, discrimination, sexual content, or unlawful activity.</li>
+              <li>Do not publicly release identifiable samples or outputs reproducing a recognizable face or voice without prior written permission from the Data Provider.</li>
+              <li>Store the dataset securely, report loss, leakage, or unauthorized access, and delete every copy when research ends, access is withdrawn, or the Data Provider requests deletion.</li>
+            </ul>
+            <p class="ethics-note">This summary does not replace the complete HUG-VIS Dataset Academic Use License.</p>
+          </div>
+        </article>
       </section>
 
       <section class="section citation" id="citation">
@@ -431,9 +510,10 @@
             Human-centered Understanding and Generation
             in Visual Intelligence},
   author = {Ma, Fei and Cheng, Zebang and Li, Minghui and
-            Xu, Hongbo and Shao, Yihua and Wang, Hanling and
-            Gao, Yuqing and Liu, Zhou and Wang, Dong and
-            Cui, Laizhong and Sebe, Nicu and Tian, Qi},
+            Xu, Hongbo and Tan, Yuyong and Shao, Yihua and
+            Wang, Hanling and Liu, Zhou and Gao, Yuqing and
+            Wang, Dong and Ma, Long and Cui, Laizhong and
+            Sebe, Nicu and Tian, Qi},
   year   = {2026},
   url    = {https://github.com/GML-MMGroup/HUG-VIS}
 }</code></pre>
@@ -446,8 +526,9 @@
       <p>Human-centered Understanding &amp; Generation in Visual Intelligence</p>
       <div>
         <a href="#top">Back to top ↑</a>
+        <a href="#access">Dataset access ↑</a>
         <a href="mailto:zebang.cheng@gmail.com?cc=mafei%40gml.ac.cn">Contact ↗</a>
-        <a href="HUG-VIS_Dataset_Academic_Use_License.docx" download>Academic-use license ↓</a>
+        <a href="HUG-VIS_Dataset_Academic_Use_License.docx" download>Draft license ↓</a>
         <a href="https://github.com/GML-MMGroup/HUG-VIS" target="_blank" rel="noreferrer">GitHub ↗</a>
       </div>
     </footer>

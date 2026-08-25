@@ -64,19 +64,37 @@ const galleryItems = {
 const galleryImageButton = document.querySelector('[data-gallery-image]');
 const galleryImage = galleryImageButton?.querySelector('img');
 const galleryCaption = document.querySelector('[data-gallery-caption]');
+const galleryPanel = document.querySelector('[role="tabpanel"]');
+const galleryTabs = [...document.querySelectorAll('[data-gallery-tab]')];
 
-document.querySelectorAll('[data-gallery-tab]').forEach((tab) => {
-  tab.addEventListener('click', () => {
-    const item = galleryItems[tab.dataset.galleryTab];
-    if (!item || !galleryImage || !galleryImageButton || !galleryCaption) return;
-    document.querySelectorAll('[data-gallery-tab]').forEach((button) => {
-      button.setAttribute('aria-selected', String(button === tab));
-    });
-    galleryImage.animate([{ opacity: 0.15 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
-    galleryImage.src = item.src;
-    galleryImage.alt = item.alt;
-    galleryImageButton.dataset.lightbox = item.src;
-    galleryCaption.textContent = item.caption;
+const selectGalleryTab = (tab, moveFocus = false) => {
+  const item = galleryItems[tab.dataset.galleryTab];
+  if (!item || !galleryImage || !galleryImageButton || !galleryCaption) return;
+  galleryTabs.forEach((button) => {
+    const selected = button === tab;
+    button.setAttribute('aria-selected', String(selected));
+    button.tabIndex = selected ? 0 : -1;
+  });
+  galleryPanel?.setAttribute('aria-labelledby', tab.id);
+  galleryImage.animate([{ opacity: 0.15 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
+  galleryImage.src = item.src;
+  galleryImage.alt = item.alt;
+  galleryImageButton.dataset.lightbox = item.src;
+  galleryCaption.textContent = item.caption;
+  if (moveFocus) tab.focus();
+};
+
+galleryTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectGalleryTab(tab));
+  tab.addEventListener('keydown', (event) => {
+    let targetIndex;
+    if (event.key === 'ArrowRight') targetIndex = (index + 1) % galleryTabs.length;
+    if (event.key === 'ArrowLeft') targetIndex = (index - 1 + galleryTabs.length) % galleryTabs.length;
+    if (event.key === 'Home') targetIndex = 0;
+    if (event.key === 'End') targetIndex = galleryTabs.length - 1;
+    if (targetIndex === undefined) return;
+    event.preventDefault();
+    selectGalleryTab(galleryTabs[targetIndex], true);
   });
 });
 
